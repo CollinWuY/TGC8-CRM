@@ -1,0 +1,47 @@
+{% extends 'base.template.html'%}
+
+{% block css %}
+<style>
+	body {
+		background-color: antiquewhite;
+	}
+    h1 {
+        font-family: Verdana;
+    }
+    h2{
+        font-family: Montserrat;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Customer Record{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column my-3">
+	<h1>GoodWork CRM System</h1>
+	<h2>Customer Records<h2>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+		</tr>
+	</thead>
+        <tbody>
+            {% for customers in all_customers %}
+            <tr>
+                <td> {{customers.first_name}} </td>
+                <td> {{customers.last_name}} </td>
+                <td> {{customers.email}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+
+
+
+
+{% endblock %}

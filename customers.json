@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "first_name": "first_name",
+    "last_name": "last_name",
+    "email": "name@email.com",
+    "send_marketing_material": true
+  },
+  {
+    "id": 2,
+    "first_name": "Mary",
+    "last_name": "Sue",
+    "email": "marysue@gemail.com",
+    "send_marketing_material": false
+  },
+  {
+    "id": 3,
+    "first_name": "Thomas",
+    "last_name": "Tan",
+    "email": "tthomas@gmail.com",
+    "send_marketing_material": true
+  }
+]

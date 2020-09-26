@@ -1,0 +1,35 @@
+{% extends 'base.template.html'%}
+
+{% block css %}
+<style>
+	body {
+		background-color: antiquewhite;
+	}
+    h1 {
+        font-family: Verdana;
+    }
+    h2{
+        font-family: Montserrat;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Customer Registration Form{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column my-3">
+	<h1>GoodWork CRM System</h1>
+	<h2>Customer Registration<h2>
+</div>
+<form methods="POST">
+    <div>
+        <label class="form-label">First Name:</label>
+        <input type="text" name="first_name" placeholder="Enter First Name: ">
+    </div>
+
+</form>
+
+
+
+
+{% endblock %}
