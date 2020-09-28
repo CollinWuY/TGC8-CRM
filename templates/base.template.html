@@ -18,9 +18,9 @@
 	<div class="container">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div class="alert alert-success">
+                <div class="alert alert-success" id="flashed">
                     {% for message in messages %}
-                    <li>{{ message }}</li>
+                        <li>{{ message }}</li>
                     {% endfor %}
                 </div>
             {% endif %}
@@ -40,10 +40,14 @@
 	</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
-        {% with messages = get_flashed_messages() %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {% for msg in messages %}
-                    toastr.info("{{msg}}");
+                {% for category, msg in messages %}
+                    {% if category == "error" %}
+                        toastr.error("{{msg}}");
+                    {% else %}
+                        toastr.info("{{msg}}")
+                    {% endif %}
                 {% endfor %}
             {% endif %}
         {% endwith %}

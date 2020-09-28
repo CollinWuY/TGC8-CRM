@@ -26,25 +26,40 @@
 <form method="POST">
 	<div class="my-3">
 		<label class="form-label">First Name:</label>
-		<input class="form-control" type="text" name="first_name" placeholder="Enter First Name: ">
-    </div>
+		<input class="form-control {%if 'first_name' in errors %} is-invalid {%endif%} " type="text" name="first_name" placeholder="Enter First Name: " value="{{old_values.first_name}}">
+        {% if 'first_name' in errors %}
+		<div class="invalid-feedback">
+			{{errors.first_name}}
+		</div>
+		{% endif %}
+	</div>
 	<div class="my-3">
-        <label class="form-label">Last Name:</label>
-        <input class="form-control" type="text" name="last_name" placeholder="Enter Last Name: ">
+		<label class="form-label">Last Name:</label>
+		<input class="form-control {%if 'last_name' in errors %} is-invalid {%endif%}" type="text" name="last_name" placeholder="Enter Last Name: " value="{{old_values.last_name}}">
+        {% if 'last_name' in errors %}
+		<div class="invalid-feedback">
+			{{errors.last_name}}
+		</div>
+		{% endif %}
+	</div>
+	<div class="my-3">
+		<label class="form-label">Email:</label>
+		<input class="form-control {%if 'email' in errors %} is-invalid {%endif%}" type="text" name="email" placeholder="name@emil.com" value="{{old_values.email}}">
+        {% if 'last_name' in errors %}
+		<div class="invalid-feedback">
+			{{errors.last_name}}
+		</div>
+		{% endif %}
+	</div>
+	<div class="my-3 d-flex align-items-center">
+		<label class="form-label checkbox-inline ">Send Marketing Material: </label>
+		<input type="checkbox" class="ml-4" style="height:30px; width:30px " name="can_send" {% if 'can_send' in old_values %} checked {% endif %}>
     </div>
-    <div class="my-3">
-        <label class="form-label">Email:</label>
-        <input class="form-control" type="text" name="email" placeholder="name@emil.com ">
-    </div>
-    <div class="my-3 d-flex align-items-center">
-        <label class="form-label checkbox-inline ">Send Marketing Material: </label>
-        <input type="checkbox" class="ml-4" style="height:30px; width:30px " name="can_send">
-    </div>
-    <input type="submit" class="btn btn-primary"> 
+		<input type="submit" class="btn btn-primary">
 
 </form>
 
 
 
 
-{% endblock %}
+		{% endblock %}

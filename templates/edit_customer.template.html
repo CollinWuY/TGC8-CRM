@@ -22,30 +22,46 @@ content %}
   <div class="my-3">
     <label class="form-label">First Name:</label>
     <input
-      class="form-control"
+      class="form-control {% if 'first_name' in errors %} is-invalid {% endif %}"
       type="text"
       name="first_name"
       value="{{customer.first_name}}"
     />
+    {% if 'first_name' in errors %}
+    <div class="invalid-feedback">
+        {{errors.first_name}}
+    </div>
+    {% endif %}
   </div>
   <div class="my-3">
     <label class="form-label">Last Name:</label>
     <input
-      class="form-control"
+      class="form-control {% if 'last_name' in errors %} is-invalid {% endif %}"
       type="text"
       name="last_name"
       value="{{customer.last_name}}"
     />
+     {% if 'last_name' in errors %}
+    <div class="invalid-feedback">
+        {{errors.last_name}}
+    </div>
+    {% endif %}
   </div>
   <div class="my-3">
     <label class="form-label">Email:</label>
     <input
-      class="form-control"
+      class="form-control {% if 'email' in errors %} is-invalid {% endif %}"
       type="text"
       name="email"
       value="{{customer.email}}"
     />
+    {% if 'email' in errors %}
+    <div class="invalid-feedback">
+        {{errors.email}}
+    </div>
+    {% endif %}
   </div>
+   
   <div class="my-3 d-flex align-items-center">
     <label class="form-label checkbox-inline">Send Marketing Material: </label>
     <input
