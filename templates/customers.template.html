@@ -40,6 +40,7 @@
                 <td> {{customers.can_send}}</td>
                 <td>
                     <a href="{{url_for('show_edit_customer', customer_id=customers.id)}}" class="btn btn-primary">Edit</a>
+                    <a href="{{url_for('show_delete_customer', customer_id=customers.id)}}" class="btn btn-danger btn-sm">DELETE</a>
                 </td>
             </tr>
             {% endfor %}

@@ -89,6 +89,35 @@ def process_edit_customer(customer_id):
         return f"The customer with the id of {customer_id} is not found"
 
 
+@app.route('/customers/<int:customer_id>/delete')
+def show_delete_customer(customer_id):
+    customer_to_delete = None
+    for each_customer in database:
+        if each_customer["id"] == customer_id:
+            customer_to_delete = each_customer
+            break
+    if customer_to_delete:
+        return render_template("delete_customer.template.html", customer=customer_to_delete)
+    else:
+        return f"The customer with the id of {customer_id} is NOT found!"
+
+
+@app.route('/customers/<int:customer_id>/delete', methods=["POST"])
+def process_delete_customer(customer_id):
+    customer_to_delete = None
+    for each_customer in database:
+        if each_customer["id"] == customer_id:
+            customer_to_delete = each_customer
+            break
+    if customer_to_delete:
+        database.remove(customer_to_delete)
+        with open('customer.json', 'w') as fp:
+            json.dump(database, fp)
+        return redirect(url_for("show_customers"))
+    else:
+        return f"The customer with the id of {customer_id} is NOT found!"
+
+
 # "magic code" -- boilerplate
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),  # or '0.0.0.0'
