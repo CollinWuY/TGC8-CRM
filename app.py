@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 import json
 import random
 
 app = Flask(__name__)
+app.secret_key = b"#1234567#7654321"
 database = {}
 with open('customers.json') as fp:
     database = json.load(fp)
@@ -47,7 +48,9 @@ def process_add_customers():
 
     with open('customers.json', 'w') as fp:
         json.dump(database, fp)
-
+    flash(
+        f"The customer with the name {new_customer['first_name']} {new_customer['last_name']}"
+        f" has been created successfully")
     return redirect(url_for('show_customers'))
 
 
@@ -84,6 +87,9 @@ def process_edit_customer(customer_id):
 
         with open('customers.json', 'w') as fp:
             json.dump(database, fp)
+        flash(
+            f"The customer with the name {customer_to_edit['first_name']} {customer_to_edit['last_name']}"
+            f" has been EDITED successfully")
         return redirect(url_for("show_customers"))
     else:
         return f"The customer with the id of {customer_id} is not found"
@@ -113,6 +119,11 @@ def process_delete_customer(customer_id):
         database.remove(customer_to_delete)
         with open('customer.json', 'w') as fp:
             json.dump(database, fp)
+
+        flash(
+            f"The customer with the name {customer_to_delete['first_name']} {customer_to_delete['last_name']}"
+            f" has been DELETED successfully")
+
         return redirect(url_for("show_customers"))
     else:
         return f"The customer with the id of {customer_id} is NOT found!"
